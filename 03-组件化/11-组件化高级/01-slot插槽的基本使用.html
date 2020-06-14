@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<!-- 
+  1、插槽的基本使用<slot></slot>
+  2、插槽的默认值是：<slot><button>按钮</button></slot> 
+     可以给一个按钮默认值，如果slot没有标签就显示默认值，有标签就显示标签内容
+  3、如果有多个值，同时放入到组件进行替换时，一起作为替换元素
+ -->
+<div id="app">
+  <cpn></cpn>
+  <cpn><button>按钮</button></cpn>
+
+  <cpn>
+    <div>我是div元素</div>
+    <i>噢噢噢</i>
+    <p>我是内容</p>
+  </cpn>
+
+  <cpn><i>哈哈哈哈</i></cpn>
+
+  <cpn><p>红红火火恍恍惚惚</p></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>我是标题</h2>
+    <p>我是内容，哦哦哦</p>
+    <slot></slot>
+  </div>
+</template>
+
+
+<script src="../vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      message:'你好，世界！'
+    },
+    // 注册组件
+    components:{
+      cpn:{
+        template:`#cpn`
+      }
+    }
+  })
+</script>
+</body>
+</html>

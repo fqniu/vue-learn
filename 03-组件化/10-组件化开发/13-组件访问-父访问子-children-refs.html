@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <!-- <cpn1></cpn1>   假如在开发中插入其他子组件，这时用1、$children[3] 此时数值索引号一直变化-->
+  <cpn ref="aaa"></cpn>
+  <button @click="btnclick">按钮</button>
+</div>
+
+<template id="cpn">
+  <div>
+    <p>我是子组件</p>
+  </div>
+</template>
+
+
+<script src="../vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      message:'你好，世界！'
+    },
+    methods:{
+      // 父访问子
+      btnclick(){
+        // // 1、$children  （用得较少）
+        // console.log(this.$children);  //打印是一个数组对象
+        // // this.$children[0].showMessage();  //所以$children要加上[0] 
+        // for(let c of this.$children){
+        //   console.log(c.name);
+        //   c.showMessage();
+        // }
+        // console.log(this.$children[3].name);
+        // 假如在开发中插入其他子组件，这时用1、$children[3] 此时数组索引号下标值是不固定的
+        
+        // 2、$refs  => 对象类型  （用得非常多）用于拿一个子组件
+        console.log(this.$refs);  
+        // 如在cpn里面不加ref="aaa"的情况下，$refs默认是空对象
+        // 如在cpn里面加ref="aaa"的情况下 结果是{aaa: VueComponent}
+        console.log(this.$refs.aaa); //此时$refs是对象，加上.aaa就可以拿到里面的值 如key
+        console.log(this.$refs.aaa.name); 
+
+      }
+    },
+    components:{
+      cpn:{
+        template:`#cpn`,
+        data(){
+          return {
+            name:'我是子组件的name'
+          }
+        },
+        methods:{
+          showMessage(){
+            console.log('showMmessage');
+            
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

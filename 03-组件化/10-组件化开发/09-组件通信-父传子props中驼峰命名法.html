@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <!-- v-bind:这里不支持驼峰，改为cInfo —— c-info -->
+  <!-- info 和 message对应的是vue父组件里面的对象-->
+  <!-- c-info 和child-my-message对应的是子组件里面的对象 必须用v-bind-->
+  <cpn1 v-bind:c-info="info"  :child-my-message="message"></cpn1>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>{{cInfo}}</h2>
+    <h2>{{childMyMessage}}</h2>
+  </div>
+</template>
+
+<script src="../vue.js"></script>
+<script>
+  //注册组件  子组件  父组件向子组件传递参数 父传子：props
+  const cpn={
+    template:'#cpn',
+    props:{
+      cInfo:{
+        type:Object,
+        default(){
+          return {}
+        }
+      },
+      childMyMessage:{
+        type:String,
+        default:''
+      }
+    }
+  } 
+
+  const app=new Vue({
+    el:'#app',
+    data:{
+      message:'你好，世界！',
+      info:{
+        name:"fqniu",
+        age:23,
+        sex:"男"
+      }
+    },
+    // 局部组件，这个vue里面是父组件
+    components:{
+      cpn1:cpn
+      // 前面的cpn1是<div id="app">中cpn1  后面的cpn是注册组件的cpn
+      // cpn:cpn 增强写法是 cpn
+    }
+  })
+</script>
+</body>
+</html>
