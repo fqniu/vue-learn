@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <img v-bind:src="imgurl" alt="">  
+  <a v-bind:href="ahref">百度一下</a>  <!--v-bind的冒号表示给哪一个属性绑定-->
+  
+  <!-- 语法糖的写法 -->
+  <img :src="imgurl" alt="">  
+  <a :href="ahref">百度一下</a>  
+</div>
+
+<script src="vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      message:'你好，世界！',
+      imgurl:'https://p0.ssl.qhimgs4.com/t01beaacc9b3215d3d2.webp',
+      ahref:'http://wwww.baidu.com'
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <h2 :style="{keys(属性名): value(属性值)}">{{message}}</h2> --> 
+    <h2 :style="{'font-size':'50px'}">{{message}}</h2> 
+    <h2 :style="{fontSize:'50px'}">{{message}}</h2>     <!--可以用驼峰命名法-->
+    <!--这里的50px加引号，因为在vue中，不加会被当成变量去解析， 而转为样式时，是没有引号的-->
+
+    <!-- finalsize当成一个变量 -->
+  <h2 :style="{fontSize:finalsize + 'px',backgroundColor:finalColor}">{{message}}</h2>
+  <h2 :style="getStyle()">{{message}}</h2>
+  </div>
+  
+  <script src="vue.js"></script>
+  <script>
+    const app=new Vue({
+      el:'#app',
+      data:{
+        message:'你好，世界！',
+        finalsize: 100,
+        finalColor:'red',
+      },
+      methods:{
+        getStyle:function(){
+          return {fontSize:this.finalsize + 'px',backgroundColor:this.finalColor}
+        }
+      }
+    })
+  </script>
+</body>
+</html>

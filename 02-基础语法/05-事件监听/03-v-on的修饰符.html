@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 1、stop修饰符的使用：阻止冒泡 -->
+    <div @click='divclick'>
+      <button @click='btnclick'>按钮1</button>
+    </div>
+
+    <!-- 2、prevent修饰符的使用 -->
+    <form action="baidu">
+      <!-- 如果不加.prevent的话 会提交内容，阻默认行为 -->
+      <input type="submit" value="提交" @click.prevent='submitclick'>
+    </form>
+
+    <!-- 3、监听某个键盘的键帽 -->
+    <!-- .enter 只有回车按钮时才会调用函数 -->
+    <input type="text" @keyup='keyUp'>
+    <input type="text" @keyup.enter='keyUp'>
+  </div>
+  
+  <script src="../vue.js"></script>
+  <script>
+    const app=new Vue({
+      el:'#app',
+      data:{
+        message:'你好，世界！'
+      },
+      methods:{
+        divclick(){
+          console.log('divclick');
+          
+        },
+        btnclick(){
+          console.log('btnclick');
+          
+        },
+        submitclick(){
+          console.log('submitclick');
+          
+        },
+        keyUp(){
+          console.log('keyUp');
+          
+        }
+      }
+    })
+  </script>
+</body>
+</html>

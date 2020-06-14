@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 1、选择一个的时候 -->
+    <select name="abc" id="" v-model="fruit">
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+      <option value="香蕉">香蕉</option>
+      <option value="西瓜">西瓜</option>
+    </select>
+    <h2>您选择的是：{{fruit}}</h2>
+
+    <!-- 2、选择多个的时候 -->
+    <select name="abc" id="" v-model="fruits" multiple>
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+      <option value="香蕉">香蕉</option>
+      <option value="西瓜">西瓜</option>
+    </select>
+    <h2>您选择的是：{{fruits}}</h2>
+    <!-- 按住Ctrl键在选择 -->
+    
+    <!-- 值绑定 -->
+    <label v-for="item in originhobbies" :for="item">
+      <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}
+    </label>
+  </div>
+  
+<script src="../vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      message:'你好，世界！',
+      fruit:'香蕉',
+      fruits:[],
+      originhobbies:['篮球','足球','网球','台球','高尔夫球']
+    }
+  })
+</script>
+</body>
+</html>

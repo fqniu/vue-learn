@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2 class="title" :class="['active','line']">{{message}}</h2> <!--加引号的话，是字符串，此时class里面是title active line-->
+    <h2 class="title" :class="[active,line]">{{message}}</h2> <!--不加引号的话，是变量，此时class里面是title aaa bbb-->
+    <h2 class="title" v-bind:class="getClasses()">{{message}}</h2>
+  </div>
+  
+  <script src="vue.js"></script>
+  <script>
+    const app=new Vue({
+      el:'#app',
+      data:{
+        message:'你好，世界！',
+        active:'aaa',
+        line:'bbb'
+      },
+      methods:{
+         getClasses:function(){
+          return [this.active,this.line];
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="first">
+        <h2>当前计数：{{counter}}</h2>
+        <!-- <button v-on:click='counter++'>+</button>
+        <button v-on:click='counter--'>-</button> -->
+        <button v-on:click='add'>+</button>  <!--新的指令v-on -->
+        <button @click='subtraction'>-</button>  <!--@click是语法糖，与v-on:click一样的 -->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        //语法糖：简写
+        const one=new Vue({
+            el:'#first',
+            data:{
+                counter:0
+            },
+            methods:{  //新的属性methods 用于定义Vue对象中的定义方法
+                add:function(){
+                    this.counter++   //methods想要用data里面的数据需要加this
+                },
+                subtraction:function(){
+                    this.counter--
+                }
+            }
+        })
+
+        /*
+        开发中什么是方法？什么是函数？
+            方法：method
+            函数：function
+            
+            function fn(){  //函数
+
+            }
+            类里面：
+            function Person(){
+                里面是方法 （因为方法是和某个实例是挂扣的）
+            }
+
+            debug/release
+            开发版本是debug
+            发布版本是release
+            GitHub里面选择tags
+
+            代码规范：
+            缩进4个空格，开发中最好2个空格
+
+            CLI-> .editconfig 缩进2个空格
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>点击次数：{{counter}}</h2>
+    <!-- <button v-on:click="increat">+</button>
+    <button v-on:click="decreat">-</button> -->
+    <!--语法糖写法 -->
+    <button @click="increat">+</button>
+    <button @click="decreat">-</button>
+  </div>
+  
+  <script src="../vue.js"></script>
+  <script>
+    const app=new Vue({
+      el:'#app',
+      data:{
+        message:'你好，世界！',
+        counter:0
+      },
+      methods:{
+        increat(){
+          this.counter++;
+        },
+        decreat(){
+          this.counter--;
+        }
+      }
+
+    })
+  </script>
+</body>
+</html>

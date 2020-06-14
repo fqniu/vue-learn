@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、属性的增强写法
+    const name='why';
+    const age=18;
+    const height=1.88;
+
+    //ES5写法：
+    const obj={
+      name:name,
+      age:age,
+      height:height
+    }
+    console.log(obj);
+    
+    // ES6写法：
+    const obj={
+      name,
+      age,
+      height
+    }
+    console.log(obj);
+
+    // 2、函数的增强写法
+    //ES5写法：
+    const obj1={
+      run:function(){
+        console.log('run');
+        
+      },
+      eat:function(){
+        console.log('eat');
+        
+      }
+    }
+    obj1.run();
+    obj1.eat();
+
+    // ES6写法：
+    const obj2={
+      run(){
+        console.log('run');
+        
+      },
+      eat(){
+        console.log('eat');
+        
+      }
+    }
+    obj2.run();
+    obj2.eat();
+  </script>
+</body>
+</html>

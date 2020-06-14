@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in arr">{{item}}</li>
+    </ul>
+    <button @click="btnclick">按钮</button>
+  </div>
+  
+  <script src="../vue.js"></script>
+  <script>
+    const app=new Vue({
+      el:'#app',
+      data:{
+        message:'你好，世界！',
+        arr:['a','b','c','d']
+      },
+      methods:{
+        btnclick(){
+          // 数组中响应式方法有：
+          // 1、添加元素从最后一个
+          this.arr.push('111','222');
+          // 2、添加元素从第一个
+          this.arr.unshift('aaa','bbb');
+          // 3、删除元素从最后一个
+          this.arr.pop('ccc','ddd');
+          // 4、删除元素从第一个
+          this.arr.shift('aaa','bbb');
+          // 5、splice作用：删除元素、插入元素、替换元素
+          // 删除元素：
+          this.arr.splice(1);//表示从第一个开始，后面的全部删除
+          this.arr.splice(1,2);//表示从第一个开始，删除后面的两个
+          // 替换元素：
+          this.arr.splice(1,4,'e','f','g','h');//表示从第一个开始，替换后面4个值内容
+          // 插入元素：
+          this.arr.splice(1,0,'e','f','g','h');//表示从第一个开始，0代表不删除元素，后面是添加的元素
+          //6、sort 排序
+          this.arr.sort();
+          //7、reverse 反转
+          this.arr.reserve();
+
+          //------ 注意：通过索引值修改数组中的元素,不是响应式的，界面没有改变----------------
+          this.arr[0]='aaaa';
+          // 1、响应式可以修改数组中的元素：通过splice
+          this.arr.splice(0,1,'aaaa');
+          //2、 响应式可以修改数组中的元素：set(要修改的元素，索引值，修改后的值)
+          Vue.set(this.arr,0,'aaaa');
+
+
+        }
+      }
+    })
+  </script>
+</body>
+</html>

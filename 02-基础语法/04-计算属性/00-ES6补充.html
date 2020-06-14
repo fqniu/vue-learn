@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>按钮0</button>
+  <button>按钮1</button>
+  <button>按钮2</button>
+  <button>按钮3</button>
+  <script>
+    // 1、没有块级作用域引起的问题：if的块级
+    var func;
+    if(true){
+      var name='why';
+      func=function(){
+        console.log(name);
+      }
+      // func();
+    }
+    var name='bbb';
+    func();   //bbb
+    //我们想的是把func传给别人，所以我们想的是把这里打印的是函数里面的name，
+    //但是可能用之前就被改掉了，比如改为上面var name='bbb'，此时再调用函数打印name的改后的bbb
+    console.log(name); //bbb
+
+
+    var func;
+    if(true){
+      let name='why';
+      func=function(){
+        console.log(name);
+      }
+      // func();
+    }
+    var name='bbb';
+    func(); //why
+    console.log(name);  //bbb
+
+
+    //2、没有块级作用域引起的问题：for的块级
+    //为什么闭包可以解决问题：函数是一个作用域，
+    // var btns=document.getElementsByTagName('button');
+    // for(var i=0;i<btns.length;i++){
+    //   (function(num){
+    //   btns[i].onclick=function(){
+    //     console.log('第'+num+'个按钮被点击了');
+    //   }
+    // })(i)
+    // }
+    
+    //把var改为let
+    const btns=document.querySelectorAll('button');
+    // for(let i=0;i<btns.length;i++){
+    //   btns[i].onclick=function(){
+    //     console.log('第'+i+'个按钮被点击了');
+        
+    //  }
+    // }
+
+
+    //---------------------------------ES5中闭包解决var---------------------------
+    // 为什么闭包可以解决问题：函数是一个作用域，
+    // {
+    //   (function(num){ //i=0
+    //     btns[i].onclick=function(){
+    //       console.log('第'+num+'个按钮被点击了');
+    //     }
+    //   })(0)  //这里的(0) ()代表是执行这个函数 
+    // }
+    // {
+    //   (function(num){ //i=1
+    //     btns[i].onclick=function(){
+    //       console.log('第'+num+'个按钮被点击了');
+    //     }
+    //   })(1)
+    // }
+    // {
+    //   (function(num){ //i=2
+    //     btns[i].onclick=function(){
+    //       console.log('第'+num+'个按钮被点击了');
+    //     }
+    //   })(2)
+    // }
+    // {
+    //   (function(num){ //i=3
+    //     btns[i].onclick=function(){
+    //       console.log('第'+num+'个按钮被点击了');
+    //     }
+    //   })(3)
+    // }
+
+
+    //---------------------------------var单独拆开分析----------------------------
+    // var i=4     这里相当于以最后一个var i=2的值为结果 因为在{}里面和在外面一样，单独可以写出来
+    // {
+    //   var i=0
+    //   btns[i].onclick=function(){  
+    //  //这个函数是在点击时才执行，此时发现下面有i,所以就去找i，而此时i已经别改为i=2
+    //       console.log('第'+i+'个按钮被点击了');
+    //     }
+    // }
+    // {
+    //   var i=1
+    //   btns[i].onclick=function(){
+    //       console.log('第'+i+'个按钮被点击了');
+    //     }
+    // }
+    // {
+    //   var i=2
+    //   btns[i].onclick=function(){
+    //       console.log('第'+i+'个按钮被点击了');
+    //     }
+    // } 
+    // {
+    //   var i=3
+    //   btns[i].onclick=function(){
+    //       console.log('第'+i+'个按钮被点击了'); 
+    //     }
+    // }
+    // var i=4 //跳出循环
+
+    //---------------------------------此时改为let------------------------------
+    // {
+    //   let i=0
+    //   btns[i].onclick=function(){
+    //       console.log('第'+i+'个按钮被点击了');
+    //     }
+    // }
+    // {
+    //   let i=1
+    //   btns[i].onclick=function(){
+    //       console.log('第'+i+'个按钮被点击了');
+    //     }
+    // }
+    // {
+    //   let i=2
+    //   btns[i].onclick=function(){
+    //       console.log('第'+i+'个按钮被点击了');
+    //     }
+    // } 
+    // {
+    //   let i=3
+    //   btns[i].onclick=function(){
+    //       console.log('第'+i+'个按钮被点击了'); 
+    //     }
+    // }
+    // let i=4
+
+
+  </script>
+</body>
+</html>
